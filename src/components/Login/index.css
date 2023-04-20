@@ -1,0 +1,70 @@
+.login-cont {
+  background-color: #121212;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  font-family: 'Roboto';
+}
+.login-card {
+  background-color: #272727;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  height: 420px;
+  padding: 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.login-logo {
+  width: 150px;
+  align-self: center;
+}
+.label1 {
+  color: #ffffff;
+  font-size: 13px;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 80px;
+  width: 100%;
+}
+.input-ele {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #b6c5ff;
+  height: 35px;
+  padding: 10px;
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 14px;
+}
+.login-btn {
+  background-color: #6366f1;
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  height: 40px;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 5px;
+}
+.error-display {
+  color: #ff0b37;
+  font-size: 14px;
+}
+@media screen and (max-width: 576px) {
+  .login-card {
+    width: 320px;
+    height: 400px;
+  }
+}
