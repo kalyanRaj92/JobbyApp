@@ -6,7 +6,7 @@ import {FiLogOut} from 'react-icons/fi'
 import './index.css'
 
 const Header = props => {
-  const removeAccess = () => {
+  const onClickLogout = () => {
     Cookies.remove('jwt_token')
     const {history} = props
     history.replace('/login')
@@ -37,7 +37,7 @@ const Header = props => {
         <button
           className="header-logout-button"
           type="submit"
-          onClick={removeAccess}
+          onClick={onClickLogout}
         >
           Logout
         </button>
@@ -54,7 +54,7 @@ const Header = props => {
           </Link>
         </li>
         <li className="sm-list-item">
-          <button type="submit" className="button-icon" onClick={removeAccess}>
+          <button type="submit" className="button-icon" onClick={onClickLogout}>
             <FiLogOut className="icons" />
           </button>
         </li>

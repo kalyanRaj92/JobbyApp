@@ -1,70 +1,84 @@
-.login-cont {
-  background-color: #121212;
+.login-container {
+  background-color: #000000;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  background-size: cover;
-  font-family: 'Roboto';
+  align-items: center;
 }
-.login-card {
+
+.login-form {
   background-color: #272727;
+  padding: 22px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  width: 450px;
-  height: 420px;
-  padding: 40px;
-  align-items: flex-start;
-  justify-content: flex-start;
+  gap: 22px;
+  width: 91%;
+  max-width: 435px;
 }
-.login-logo {
-  width: 150px;
+
+.website-logo-login-form {
+  width: 122px;
   align-self: center;
+  margin-bottom: 22px;
 }
-.label1 {
-  color: #ffffff;
-  font-size: 13px;
+
+@media screen and (min-width: 768px) {
+  .login-form {
+    padding: 42px;
+  }
+  .website-logo-login-form {
+    width: 152px;
+    margin-bottom: 32px;
+  }
 }
-.login-form {
+
+.input-field-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 80px;
-  width: 100%;
 }
-.input-ele {
-  width: 100%;
+
+.login-input-label {
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: 650;
+  margin-left: 2px;
+  color: #f8fafc;
+}
+
+.login-input-field {
+  flex-grow: 1;
+  margin-top: 5px;
+  font-family: 'Roboto';
+  height: 42px;
+  padding: 5px 5px 5px 15px;
   background-color: transparent;
-  border: 1px solid #b6c5ff;
-  height: 35px;
-  padding: 10px;
-  border-radius: 2px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  color: white;
-  font-size: 14px;
+  border: 1px solid #64748b;
+  border-radius: 3px;
+  font-size: 13px;
+  color: #f8fafc;
+  outline: none;
+  cursor: pointer;
 }
-.login-btn {
-  background-color: #6366f1;
+
+.login-button {
   width: 100%;
-  margin-top: 10px;
+  background-color: #6366f1;
+  color: #f8fafc;
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: 650;
+  height: 42px;
   border: none;
-  border-radius: 8px;
-  height: 40px;
-  color: #ffffff;
-  font-size: 14px;
-  padding: 5px;
+  border-radius: 12px;
+  cursor: pointer;
+  outline: none;
 }
-.error-display {
+
+.error-msg {
+  margin-top: 2px;
+  margin-left: 3px;
   color: #ff0b37;
+  font-family: 'Roboto';
   font-size: 14px;
-}
-@media screen and (max-width: 576px) {
-  .login-card {
-    width: 320px;
-    height: 400px;
-  }
 }

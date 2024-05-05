@@ -38,6 +38,7 @@ class JobItemDetails extends Component {
     const {jobDetailss, similarJob} = jobItemDetails
     const eachValue = jobDetailss
     const {skills} = eachValue
+    console.log(skills[1])
     const {lifeAtCompany} = eachValue
     const similarJobs = similarJob
     return (
@@ -186,6 +187,7 @@ class JobItemDetails extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
+    // console.log(data)
     if (response.ok) {
       // eslint-disable-next-line camelcase
       const {job_details} = data
@@ -208,6 +210,8 @@ class JobItemDetails extends Component {
           imageUrl: job_details.life_at_company.image_url,
         },
       }
+      // console.log(job_details.skills[1])
+      //   console.log(job_details.life_at_company)
       // eslint-disable-next-line camelcase
       const {similar_jobs} = data
       const similarJobs = similar_jobs.map(eachValue => ({

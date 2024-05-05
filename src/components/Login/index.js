@@ -6,86 +6,110 @@ import {Redirect} from 'react-router-dom'
 import './index.css'
 
 class Login extends Component {
-  state = {userName: '', passWord: '', errorMsg: '', isError: false}
-
-  onChangeUserName = event => {
-    this.setState({userName: event.target.value})
+  state = {
+    username: '',
+    password: '',
+    errorMsg: '',
+    showErrorMsg: false,
   }
 
-  onChangePassword = event => {
-    this.setState({passWord: event.target.value})
+  onLoginSuccess = jwtToken => {
+    Cookies.set('jwt_token', jwtToken, {expires: 30})
+    const {history} = this.props
+    history.replace('/')
   }
 
-  submitForm = async event => {
+  onLoginFailure = errorMsg => {
+    this.setState({errorMsg, showErrorMsg: true})
+  }
+
+  onSubmitForm = async event => {
     event.preventDefault()
-    const {userName, passWord} = this.state
-    const userDetails = {
-      username: userName,
-      password: passWord,
-    }
-    const url = 'https://apis.ccbp.in/login'
+    const {username, password} = this.state
+
+    const userDetails = {username, password}
     const options = {
       method: 'POST',
       body: JSON.stringify(userDetails),
     }
-    const response = await fetch(url, options)
+    const response = await fetch('https://apis.ccbp.in/login', options)
     const data = await response.json()
-    if (response.ok) {
-      const jwtToken = data.jwt_token
-      const {history} = this.props
-      Cookies.set('jwt_token', jwtToken, {expires: 30})
-      history.replace('/')
+
+    if (response.ok === true) {
+      this.onLoginSuccess(data.jwt_token)
     } else {
-      const message = data.error_msg
-      this.setState({errorMsg: message, isError: true})
+      this.onLoginFailure(data.error_msg)
     }
   }
 
+  onChangeUserName = event => this.setState({username: event.target.value})
+
+  onChangePassword = event => this.setState({password: event.target.value})
+
+  renderUsernameField = () => {
+    const {username} = this.state
+    return (
+      <div className="input-field-container">
+        <label htmlFor="username" className="login-input-label">
+          USERNAME
+        </label>
+        <input
+          type="text"
+          value={username}
+          className="login-input-field"
+          placeholder="rahul"
+          id="username"
+          onChange={this.onChangeUserName}
+        />
+      </div>
+    )
+  }
+
+  renderPasswordField = () => {
+    const {password} = this.state
+    return (
+      <div className="input-field-container">
+        <label htmlFor="password" className="login-input-label">
+          PASSWORD
+        </label>
+        <input
+          type="password"
+          value={password}
+          className="login-input-field"
+          placeholder="rahul@2021"
+          id="password"
+          onChange={this.onChangePassword}
+        />
+      </div>
+    )
+  }
+
   render() {
-    const {userName, passWord, isError, errorMsg} = this.state
-    if (Cookies.get('jwt_token') !== undefined) {
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
       return <Redirect to="/" />
     }
-
+    const {errorMsg, showErrorMsg} = this.state
     return (
-      <div className="login-cont">
-        <div className="login-card">
+      <div className="login-container">
+        <form className="login-form" onSubmit={this.onSubmitForm}>
           <img
-            className="login-logo"
-            alt="website logo"
             src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+            alt="website logo"
+            className="website-logo-login-form"
           />
-          <form className="login-form" onSubmit={this.submitForm}>
-            <label className="label1" htmlFor="input1">
-              USERNAME
-            </label>
-            <input
-              className="input-ele"
-              type="text"
-              value={userName}
-              id="input1"
-              placeholder="Username"
-              onChange={this.onChangeUserName}
-            />
-            <label className="label1" htmlFor="input2">
-              PASSWORD
-            </label>
-            <input
-              className="input-ele"
-              type="password"
-              value={passWord}
-              id="input2"
-              placeholder="Password"
-              onChange={this.onChangePassword}
-            />
-            <button className="login-btn" type="submit">
+          {this.renderUsernameField()}
+          {this.renderPasswordField()}
+          <div>
+            <button type="submit" className="login-button">
               Login
             </button>
-            {isError && <p className="error-display">*{errorMsg}</p>}
-          </form>
-        </div>
+            {showErrorMsg && <p className="error-msg">*{errorMsg}</p>}
+          </div>
+        </form>
       </div>
     )
   }
 }
+
 export default Login

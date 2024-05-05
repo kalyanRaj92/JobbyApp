@@ -29,8 +29,9 @@
 }
 .header-item {
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   margin-right: 20px;
+  font-weight: 500;
 }
 .link {
   text-decoration: none;
@@ -38,7 +39,7 @@
 }
 .header-logout-button {
   color: #ffffff;
-  font-size: 10px;
+  font-size: 12px;
   padding: 5px;
   height: 25px;
   width: 100px;
